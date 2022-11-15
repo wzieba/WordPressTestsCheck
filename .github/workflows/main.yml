@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '18'
+
+      - run: |
+          git clone https://github.com/wordpress-mobile/WordPress-Android.git
+          git checkout test/fix-unit-tests-execution-above-jdk11
+          cp gradle.properties-example gradle.properties
+          ./gradlew testWordPressWasabiDebugUnitTest
