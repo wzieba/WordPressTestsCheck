@@ -6,12 +6,15 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        version: [11, 17, 18]
     runs-on: macos-latest
     steps:
       - uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
-          java-version: '18'
+          java-version: ${{ matrix.version }}
 
       - run: |
           git clone https://github.com/wordpress-mobile/WordPress-Android.git
