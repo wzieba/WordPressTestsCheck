@@ -9,6 +9,7 @@ jobs:
     strategy:
       matrix:
         version: [11, 17, 18]
+        branch: [ "test/fix-unit-tests-execution-above-jdk11", "431c478b1468e9c774650579136cfa050763b48f" ]
     runs-on: macos-latest
     steps:
       - uses: actions/setup-java@v3
@@ -19,6 +20,6 @@ jobs:
       - run: |
           git clone https://github.com/wordpress-mobile/WordPress-Android.git
           cd WordPress-Android
-          git checkout test/fix-unit-tests-execution-above-jdk11
+          git checkout ${{ matrix.branch }}
           cp gradle.properties-example gradle.properties
           ./gradlew testWordPressWasabiDebugUnitTest
