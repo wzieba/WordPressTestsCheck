@@ -11,6 +11,7 @@ jobs:
         version: [11, 17, 18]
         branch: [ "test/fix-unit-tests-execution-above-jdk11", "431c478b1468e9c774650579136cfa050763b48f" ]
     runs-on: macos-latest
+    continue-on-error: true
     steps:
       - uses: actions/setup-java@v3
         with:
